@@ -7,6 +7,9 @@
             "metadata": {
                 "description": "description"
             }
+        },
+        "vnetName": {
+            "type": "string"
         }
     },
     "functions": [],
@@ -26,6 +29,36 @@
             "sku": {
                 "name": "Standard_LRS",
                 "tier": "Standard"
+            }
+        },
+        {
+            "name": "[parameters('vnetName')]",
+            "type": "Microsoft.Network/virtualNetworks",
+            "apiVersion": "2020-11-01",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[parameters('vnetName')]"
+            },
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.10.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Websubnet",
+                        "properties": {
+                            "addressPrefix": "10.10.1.0/24"
+                        }
+                    },
+                    {
+                        "name": "dbsubnet",
+                        "properties": {
+                            "addressPrefix": "10.10.2.0/24"
+                        }
+                    }
+                ]
             }
         }
     ],
