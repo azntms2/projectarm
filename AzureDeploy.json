@@ -29,5 +29,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+    "storageEndpoint": {
+      "type": "object",
+      "value": "[reference(variables('uniqueStorageName')).primaryEndpoints]"
+    }
+  }
 }
